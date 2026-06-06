@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>김휘</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <script src="../static/js/script.js"></script>
+    <button class="toggle-btn" id="toggleBtn" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <h2>김휘</h2>
+            <nav class="sidebar-menu">
+                <a href="{{ url_for('Home') }}"><div class="material-icons">home</div>Home</a>
+                <a href="{{ url_for('Career') }}"><div class="material-icons">work</div>Career</a>
+                <a href="{{ url_for('Portfolio') }}"><div class="material-icons">article</div>Portfolio</a>
+                <a href="{{ url_for('Contact') }}"><div class="material-icons">mail</div>Contact</a>
+            </nav>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="overlay"></div>
+</body>
+</html>

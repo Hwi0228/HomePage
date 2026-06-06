@@ -1,0 +1,231 @@
+:root {
+    --point-color: #ff8c00;
+}
+
+body {
+    background: #021d6c;
+    font-family: 'Pretendard';
+    margin: 0;
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    width: 30px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+}
+
+.toggle-btn span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 4px;
+    width: 100%;
+    background-color: var(--point-color);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+    transform-origin: center center;
+}
+
+.toggle-btn span:nth-child(1) {
+    top: 0;
+}
+
+.toggle-btn span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.toggle-btn span:nth-child(3) {
+    bottom: 0;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%) translateZ(0);
+    width: 100%;
+    height: 100dvh;
+    background-color: #fff;
+    border-right: 1px solid var(--point-color);
+    z-index: 999;
+    transition: transform 0.3s ease, width 0.25s ease;
+    will-change: transform;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    color: var(--point-color)
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    border-radius: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1em;
+    margin: 0 0 1em 0;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+    transition-property: background;
+    color: var(--point-color);
+    text-decoration: none;
+}
+
+
+.sidebar a:hover {
+    background: #ffefdc;
+    transition: transform 0.3s ease
+}
+
+.sidebar a:hover {
+    text-decoration: none;
+}
+
+
+.sidebar h2 {
+    padding-bottom: .75em;
+    margin: 1em;
+    border-bottom: 1px solid var(--point-color);
+}
+
+.sidebar-content {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Main content area should be offset to the right of the fixed sidebar */
+.content {
+    min-height: 100vh;
+    padding: 2rem 1.25rem;
+}
+
+@media (min-width: 631px) {
+    .content {
+        margin-left: clamp(240px, 15vw + 50px, 320px);
+    }
+}
+
+.sidebar.active {
+    transform: translateX(0) translateZ(0);
+}
+
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 998;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+@media (min-width: 631px) {
+
+    .toggle-btn {
+        display: none;
+    }
+
+    .sidebar {
+        left: 0;
+        width: clamp(240px, 15vw + 50px, 320px);
+        transform: translateX(0) translateZ(0);
+    }
+
+    .sidebar-overlay {
+        display: none !important;
+    }
+
+    /* Shift page content right by sidebar width so it doesn't appear under the fixed sidebar */
+    body {
+        padding-left: clamp(240px, 15vw + 50px, 320px);
+    }
+}
+
+.toggle-btn.open span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.toggle-btn.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.toggle-btn.open span:nth-child(3) {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+        url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+        url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.sidebar a .material-icons {
+    margin-right: 0.4em;
+    font-size: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
